@@ -1,4 +1,4 @@
-(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const l of document.querySelectorAll('link[rel="modulepreload"]'))s(l);new MutationObserver(l=>{for(const a of l)if(a.type==="childList")for(const r of a.addedNodes)r.tagName==="LINK"&&r.rel==="modulepreload"&&s(r)}).observe(document,{childList:!0,subtree:!0});function o(l){const a={};return l.integrity&&(a.integrity=l.integrity),l.referrerPolicy&&(a.referrerPolicy=l.referrerPolicy),l.crossOrigin==="use-credentials"?a.credentials="include":l.crossOrigin==="anonymous"?a.credentials="omit":a.credentials="same-origin",a}function s(l){if(l.ep)return;l.ep=!0;const a=o(l);fetch(l.href,a)}})();const i="/front_5th_chapter1-1",m=t=>{const e=document.querySelector("#nav");e&&(console.log("그래서 이거 이벤트 리스너 등록된거?"),e.addEventListener("click",o=>{if(o.target.tagName==="A"){o.preventDefault();const s=o.target.getAttribute("href");window.history.pushState({},"",`${i}${s}`),n()}})),t==="/login"?f():t==="/profile"&&p(),g()},f=()=>{if(localStorage.getItem("user")!==null)window.history.pushState({},"","/"),n();else{const t=document.getElementById("login-form");t&&t.addEventListener("submit",h)}},p=()=>{if(localStorage.getItem("user")===null)window.history.pushState({},"","/login"),n();else{const t=document.getElementById("profile-form");t&&t.addEventListener("submit",b)}},g=()=>{const t=document.getElementById("logout");t&&t.addEventListener("click",v)},b=t=>{t.preventDefault();const e=document.getElementById("username").value,o=document.getElementById("email").value,s=document.getElementById("bio").value.trim(),l={username:e,email:o,bio:s};localStorage.setItem("user",JSON.stringify(l)),window.history.pushState({},"","/profile"),n()},h=t=>{t.preventDefault();const e={username:"testuser",email:"",bio:""};localStorage.setItem("user",JSON.stringify(e)),window.history.pushState({},"","/"),n()},v=t=>{t.preventDefault(),localStorage.removeItem("user"),window.history.pushState({},"","/login"),n()},x=()=>`
+(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const l of document.querySelectorAll('link[rel="modulepreload"]'))s(l);new MutationObserver(l=>{for(const a of l)if(a.type==="childList")for(const i of a.addedNodes)i.tagName==="LINK"&&i.rel==="modulepreload"&&s(i)}).observe(document,{childList:!0,subtree:!0});function o(l){const a={};return l.integrity&&(a.integrity=l.integrity),l.referrerPolicy&&(a.referrerPolicy=l.referrerPolicy),l.crossOrigin==="use-credentials"?a.credentials="include":l.crossOrigin==="anonymous"?a.credentials="omit":a.credentials="same-origin",a}function s(l){if(l.ep)return;l.ep=!0;const a=o(l);fetch(l.href,a)}})();const d="/front_5th_chapter1-1",m=t=>{const e=document.querySelector("#nav");e&&(console.log("그래서 이거 이벤트 리스너 등록된거?"),e.addEventListener("click",o=>{if(o.target.tagName==="A"){o.preventDefault();const s=o.target.getAttribute("href");window.history.pushState({},"",`${d}${s}`),n()}})),t==="/login"?f():t==="/profile"&&p(),g()},f=()=>{if(localStorage.getItem("user")!==null)window.history.pushState({},"","/"),n();else{const t=document.getElementById("login-form");t&&t.addEventListener("submit",h)}},p=()=>{if(localStorage.getItem("user")===null)window.history.pushState({},"","/login"),n();else{const t=document.getElementById("profile-form");t&&t.addEventListener("submit",b)}},g=()=>{const t=document.getElementById("logout");t&&t.addEventListener("click",v)},b=t=>{t.preventDefault();const e=document.getElementById("username").value,o=document.getElementById("email").value,s=document.getElementById("bio").value.trim(),l={username:e,email:o,bio:s};localStorage.setItem("user",JSON.stringify(l)),window.history.pushState({},"","/profile"),n()},h=t=>{t.preventDefault();const e={username:"testuser",email:"",bio:""};localStorage.setItem("user",JSON.stringify(e)),window.history.pushState({},"","/"),n()},v=t=>{t.preventDefault(),localStorage.removeItem("user"),window.history.pushState({},"","/login"),n()},x=()=>`
   <header class="bg-blue-600 text-white p-4 sticky top-0">
     <h1 class="text-2xl font-bold">항해플러스</h1>
   </header>
@@ -9,10 +9,10 @@
 `,w=({isLoggedIn:t})=>`
   <nav id="nav" class="bg-white shadow-md p-2 sticky top-14">
     <ul class="flex justify-around">
-      <li><a href="${i}" class="text-blue-600 font-bold">홈</a></li>
+      <li><a href="/" class="text-blue-600 font-bold">홈</a></li>
       ${t?`
-          <li><a href="${i}/profile" class="text-gray-600">프로필</a></li>
-          <li><a href="#" id="logout" class="text-gray-600">로그아웃</a></li>`:`<li><a href="${i}/login" class="text-gray-600">로그인</a></li>`}
+          <li><a href="/profile" class="text-gray-600">프로필</a></li>
+          <li><a href="#" id="logout" class="text-gray-600">로그아웃</a></li>`:'<li><a href="/login" class="text-gray-600">로그인</a></li>'}
     </ul>
   </nav>
 `,$=t=>{const{profileImage:e,author:o,timeAgo:s,content:l,id:a}=t;return`
@@ -44,7 +44,7 @@
       </div>
     </div>
   </div>
-`,d=({label:t,id:e,value:o,type:s="text"})=>`
+`,r=({label:t,id:e,value:o,type:s="text"})=>`
   <div class="mb-4">
     <label for="${e}" class="block text-gray-700 text-sm font-bold mb-2">${t}</label>
     <input type="${s}" id="${e}" name="${e}" value="${o}" class="w-full p-2 border rounded" />
@@ -69,8 +69,8 @@
         내 프로필
       </h2>
       <form id="profile-form">
-        ${d({label:"사용자 이름",id:"username",value:t==null?void 0:t.username})}
-        ${d({label:"이메일",id:"email",value:t==null?void 0:t.email,type:"email"})}
+        ${r({label:"사용자 이름",id:"username",value:t==null?void 0:t.username})}
+        ${r({label:"이메일",id:"email",value:t==null?void 0:t.email,type:"email"})}
         ${I({label:"자기소개",id:"bio",value:`${t==null?void 0:t.bio} ${t==null?void 0:t.bio}`})}
         <button
           type="submit"
@@ -116,4 +116,4 @@
       </a>
     </div>
   </main>
-`;console.log("여긴 main.js");const n=()=>{const e=window.location.pathname.replace(i,"")||"/";let o="";e==="/"?o=P():e==="/profile"?o=E({user:S()}):e==="/login"?o=A():o=B(),document.getElementById("root").innerHTML=o,m(e)};window.addEventListener("load",n);window.addEventListener("popstate",n);
+`;console.log("여긴 main.js");const n=()=>{const e=window.location.pathname.replace(d,"")||"/";let o="";e==="/"?o=P():e==="/profile"?o=E({user:S()}):e==="/login"?o=A():o=B(),document.getElementById("root").innerHTML=o,m(e)};window.addEventListener("load",n);window.addEventListener("popstate",n);
