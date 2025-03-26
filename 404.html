@@ -5,9 +5,8 @@
     <title>Redirecting...</title>
     <script type="text/javascript">
       const path = window.location.pathname;
-      const query = window.location.search;
-      const hash = window.location.hash;
-      window.location.replace("/index.html" + path + query + hash);
+      console.log(path);
+      window.location.replace("/index.html" + path);
     </script>
   </head>
   <body></body>
