@@ -1,4 +1,4 @@
-import { initPageHandlers } from "./hashPageHandlers";
+import { initPageHandlers } from "./pageHandlers";
 import { MainPage, ProfilePage, LoginPage, ErrorPage } from "./pages";
 import { getUserData } from "./utils/auth";
 
@@ -27,23 +27,7 @@ export const hashRouter = () => {
 
   document.getElementById("root").innerHTML = page;
 
-  setupNavEventListeners();
-
   initPageHandlers(hashPath);
-};
-
-const setupNavEventListeners = () => {
-  const nav = document.querySelector("#nav");
-
-  if (nav) {
-    nav.addEventListener("click", (e) => {
-      if (e.target.tagName === "A") {
-        e.preventDefault();
-        const href = e.target.getAttribute("href");
-        window.location.hash = href;
-      }
-    });
-  }
 };
 
 window.addEventListener("load", initializeApp);

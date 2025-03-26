@@ -1,6 +1,16 @@
 import { router } from "./main";
 import { BASE_PATH } from "./utils/path";
 
+const isHash = window.location.hash !== "";
+
+const navigateTo = (isHash, path) => {
+  if (isHash) {
+    window.location.href = path;
+  } else {
+    window.history.pushState({}, "", path);
+  }
+};
+
 export const initPageHandlers = (path) => {
   const nav = document.querySelector("#nav");
 
@@ -9,7 +19,7 @@ export const initPageHandlers = (path) => {
       if (e.target.tagName === "A") {
         e.preventDefault();
         const href = e.target.getAttribute("href");
-        window.history.pushState({}, "", `${BASE_PATH}${href}`);
+        navigateTo(isHash, `${BASE_PATH}${href}`);
         router();
       }
     });
@@ -25,7 +35,7 @@ export const initPageHandlers = (path) => {
 
 const handleLoginPage = () => {
   if (localStorage.getItem("user") !== null) {
-    window.history.pushState({}, "", "/");
+    navigateTo(isHash, "/");
     router();
   } else {
     const form = document.getElementById("login-form");
@@ -37,7 +47,7 @@ const handleLoginPage = () => {
 
 const handleProfilePage = () => {
   if (!(localStorage.getItem("user") !== null)) {
-    window.history.pushState({}, "", "/login");
+    navigateTo(isHash, "/login");
     router();
   } else {
     const form = document.getElementById("profile-form");
@@ -61,7 +71,7 @@ const handleProfileSubmit = (e) => {
   const bio = document.getElementById("bio").value.trim();
   const userData = { username, email, bio };
   localStorage.setItem("user", JSON.stringify(userData));
-  window.history.pushState({}, "", "/profile");
+  navigateTo(isHash, "/profile");
   router();
 };
 
@@ -69,13 +79,13 @@ const handleLoginSubmit = (e) => {
   e.preventDefault();
   const userData = { username: "testuser", email: "", bio: "" };
   localStorage.setItem("user", JSON.stringify(userData));
-  window.history.pushState({}, "", "/");
+  navigateTo(isHash, "/");
   router();
 };
 
 const handleLogoutClick = (e) => {
   e.preventDefault();
   localStorage.removeItem("user");
-  window.history.pushState({}, "", "/login");
+  navigateTo(isHash, "/login");
   router();
 };
