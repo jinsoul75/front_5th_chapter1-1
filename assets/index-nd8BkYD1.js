@@ -31,7 +31,7 @@
           <button class="post-action" data-action="share" data-post-id="${a||""}">공유</button>
         </div>
     </div>
-  `},d=({content:t,isLoggedIn:e})=>`
+  `},c=({content:t,isLoggedIn:e})=>`
   <div id="root">
     <div class="bg-gray-100 min-h-screen flex justify-center">
       <div class="max-w-md w-full">
@@ -44,7 +44,7 @@
       </div>
     </div>
   </div>
-`,r=({label:t,id:e,value:l,type:s="text"})=>`
+`,d=({label:t,id:e,value:l,type:s="text"})=>`
   <div class="mb-4">
     <label for="${e}" class="block text-gray-700 text-sm font-bold mb-2">${t}</label>
     <input type="${s}" id="${e}" name="${e}" value="${l}" class="w-full p-2 border rounded" />
@@ -54,7 +54,7 @@
     <label for="${e}" class="block text-gray-700 text-sm font-bold mb-2">${t}</label>
     <textarea id="${e}" name="${e}" class="w-full p-2 border rounded">${l}</textarea>
   </div>
-`,L=[{id:1,author:"홍길동",profileImage:"https://placehold.co/40",timeAgo:"5분 전",content:"오늘 날씨가 정말 좋네요. 다들 좋은 하루 보내세요!"},{id:2,author:"김철수",profileImage:"https://placehold.co/40",timeAgo:"15분 전",content:"새로운 프로젝트를 시작했어요. 열심히 코딩 중입니다!"},{id:3,author:"이영희",profileImage:"https://placehold.co/40",timeAgo:"30분 전",content:"오늘 점심 메뉴 추천 받습니다. 뭐가 좋을까요?"},{id:4,author:"박민수",profileImage:"https://placehold.co/40",timeAgo:"1시간 전",content:"주말에 등산 가실 분 계신가요? 함께 가요!"},{id:5,author:"정수연",profileImage:"https://placehold.co/40",timeAgo:"2시간 전",content:"새로 나온 영화 재미있대요. 같이 보러 갈 사람?"}],c=()=>localStorage.getItem("user")!==null,S=()=>JSON.parse(localStorage.getItem("user")||"null"),P=()=>{const t=`
+`,L=[{id:1,author:"홍길동",profileImage:"https://placehold.co/40",timeAgo:"5분 전",content:"오늘 날씨가 정말 좋네요. 다들 좋은 하루 보내세요!"},{id:2,author:"김철수",profileImage:"https://placehold.co/40",timeAgo:"15분 전",content:"새로운 프로젝트를 시작했어요. 열심히 코딩 중입니다!"},{id:3,author:"이영희",profileImage:"https://placehold.co/40",timeAgo:"30분 전",content:"오늘 점심 메뉴 추천 받습니다. 뭐가 좋을까요?"},{id:4,author:"박민수",profileImage:"https://placehold.co/40",timeAgo:"1시간 전",content:"주말에 등산 가실 분 계신가요? 함께 가요!"},{id:5,author:"정수연",profileImage:"https://placehold.co/40",timeAgo:"2시간 전",content:"새로 나온 영화 재미있대요. 같이 보러 갈 사람?"}],u=()=>localStorage.getItem("user")!==null,S=()=>JSON.parse(localStorage.getItem("user")||"null"),P=()=>{const t=`
     <div class="mb-4 bg-white rounded-lg shadow p-4">
       <textarea class="w-full p-2 border rounded" placeholder="무슨 생각을 하고 계신가요?"></textarea>
       <button class="mt-2 bg-blue-600 text-white px-4 py-2 rounded">게시</button>
@@ -63,14 +63,14 @@
     <div class="space-y-4">
       ${L.map(e=>$(e)).join("")}
     </div>
-  `;return d({content:t,isLoggedIn:c()})},E=({user:t})=>{const e=`
+  `;return c({content:t,isLoggedIn:u()})},E=({user:t})=>{const e=`
     <div class="bg-white p-8 rounded-lg shadow-md">
       <h2 class="text-2xl font-bold text-center text-blue-600 mb-8">
         내 프로필
       </h2>
       <form id="profile-form">
-        ${r({label:"사용자 이름",id:"username",value:t==null?void 0:t.username})}
-        ${r({label:"이메일",id:"email",value:t==null?void 0:t.email,type:"email"})}
+        ${d({label:"사용자 이름",id:"username",value:t==null?void 0:t.username})}
+        ${d({label:"이메일",id:"email",value:t==null?void 0:t.email,type:"email"})}
         ${I({label:"자기소개",id:"bio",value:`${t==null?void 0:t.bio} ${t==null?void 0:t.bio}`})}
         <button
           type="submit"
@@ -80,7 +80,7 @@
         </button>
       </form>
     </div>
-  `;return d({content:e,isLoggedIn:c()})},A=()=>`
+  `;return c({content:e,isLoggedIn:u()})},A=()=>`
   <main class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
       <h1 class="text-2xl font-bold text-center text-blue-600 mb-8">항해플러스</h1>
@@ -116,4 +116,4 @@
       </a>
     </div>
   </main>
-`,u="/front_5th_chapter1-1";console.log("여긴 main.js");const n=()=>{const e=window.location.pathname.replace(u,"")||"/";let l="";e==="/"?l=P():e==="/profile"?l=E({user:S()}):e==="/login"?l=A():l=B(),document.getElementById("root").innerHTML=l,N(),m(e)},N=()=>{const t=document.querySelector("#nav");t&&t.addEventListener("click",e=>{if(e.target.tagName==="A"){e.preventDefault();const l=e.target.getAttribute("href");window.history.pushState({},"",`${u}${l}`)}})};window.addEventListener("load",n);window.addEventListener("popstate",n);
+`,r="/front_5th_chapter1-1";console.log("여긴 main.js");const n=()=>{const e=window.location.pathname.replace(r,"")||"/";let l="";e==="/"?l=P():e==="/profile"?l=E({user:S()}):e==="/login"?l=A():l=B(),document.getElementById("root").innerHTML=l,N(),m(e)},N=()=>{const t=document.querySelector("#nav");t&&t.addEventListener("click",e=>{if(e.target.tagName==="A"){e.preventDefault();const l=e.target.getAttribute("href");console.log("a"`, ${r}${l}`),window.history.pushState({},"",`${r}${l}`)}})};window.addEventListener("load",n);window.addEventListener("popstate",n);
