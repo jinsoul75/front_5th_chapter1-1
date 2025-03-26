@@ -1,8 +1,11 @@
 import { initPageHandlers } from "./pageHandlers";
 import { MainPage, ProfilePage, LoginPage, ErrorPage } from "./pages";
 import { getUserData } from "./utils/auth";
+import { BASE_PATH } from "./utils/path";
+
 export const router = () => {
-  const path = window.location.pathname;
+  const fullPath = window.location.pathname;
+  const path = fullPath.replace(BASE_PATH, "") || "/";
 
   let page = "";
 

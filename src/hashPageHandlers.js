@@ -1,20 +1,6 @@
-import { router } from "./main";
-import { BASE_PATH } from "./utils/path";
+import { hashRouter } from "./main.hash";
 
 export const initPageHandlers = (path) => {
-  const nav = document.querySelector("#nav");
-
-  if (nav) {
-    nav.addEventListener("click", (e) => {
-      if (e.target.tagName === "A") {
-        e.preventDefault();
-        const href = e.target.getAttribute("href");
-        window.history.pushState({}, "", `${BASE_PATH}${href}`);
-        router();
-      }
-    });
-  }
-
   if (path === "/login") {
     handleLoginPage();
   } else if (path === "/profile") {
@@ -25,8 +11,8 @@ export const initPageHandlers = (path) => {
 
 const handleLoginPage = () => {
   if (localStorage.getItem("user") !== null) {
-    window.history.pushState({}, "", "/");
-    router();
+    window.location.hash = "/";
+    hashRouter();
   } else {
     const form = document.getElementById("login-form");
     if (form) {
@@ -37,8 +23,8 @@ const handleLoginPage = () => {
 
 const handleProfilePage = () => {
   if (!(localStorage.getItem("user") !== null)) {
-    window.history.pushState({}, "", "/login");
-    router();
+    window.location.hash = "/login";
+    hashRouter();
   } else {
     const form = document.getElementById("profile-form");
     if (form) {
@@ -61,21 +47,21 @@ const handleProfileSubmit = (e) => {
   const bio = document.getElementById("bio").value.trim();
   const userData = { username, email, bio };
   localStorage.setItem("user", JSON.stringify(userData));
-  window.history.pushState({}, "", "/profile");
-  router();
+  window.location.hash = "/profile";
+  hashRouter();
 };
 
 const handleLoginSubmit = (e) => {
   e.preventDefault();
   const userData = { username: "testuser", email: "", bio: "" };
   localStorage.setItem("user", JSON.stringify(userData));
-  window.history.pushState({}, "", "/");
-  router();
+  window.location.hash = "/";
+  hashRouter();
 };
 
 const handleLogoutClick = (e) => {
   e.preventDefault();
   localStorage.removeItem("user");
-  window.history.pushState({}, "", "/login");
-  router();
+  window.location.hash = "/login";
+  hashRouter();
 };
