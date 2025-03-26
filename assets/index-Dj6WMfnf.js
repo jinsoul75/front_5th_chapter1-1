@@ -116,4 +116,4 @@
       </a>
     </div>
   </main>
-`;console.log("여긴 main.js");const n=()=>{const e=window.location.pathname.replace(i,"")||"/";let l="";e==="/"?l=P():e==="/profile"?l=E({user:S()}):e==="/login"?l=A():l=B(),document.getElementById("root").innerHTML=l,m(e)},N=()=>{const t=document.querySelector("#nav");t&&(console.log("그래서 이거 이벤트 리스너 등록된거?"),t.addEventListener("click",e=>{if(e.target.tagName==="A"){e.preventDefault();const l=e.target.getAttribute("href");window.history.pushState({},"",`${i}${l}`),n()}}))};window.addEventListener("load",()=>{N(),n()});window.addEventListener("popstate",n);
+`;console.log("여긴 main.js");const n=()=>{const e=window.location.pathname.replace(i,"")||"/";let l="";e==="/"?l=P():e==="/profile"?l=E({user:S()}):e==="/login"?l=A():l=B(),document.getElementById("root").innerHTML=l,m(e)},N=()=>{const t=document.querySelector("#nav");console.log("nav",t),t&&(console.log("그래서 이거 이벤트 리스너 등록된거?"),t.addEventListener("click",e=>{if(e.target.tagName==="A"){e.preventDefault();const l=e.target.getAttribute("href");window.history.pushState({},"",`${i}${l}`),n()}}))};window.addEventListener("load",()=>{N(),n()});window.addEventListener("popstate",n);
