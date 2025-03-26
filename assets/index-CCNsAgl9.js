@@ -1,4 +1,4 @@
-(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const o of document.querySelectorAll('link[rel="modulepreload"]'))s(o);new MutationObserver(o=>{for(const a of o)if(a.type==="childList")for(const i of a.addedNodes)i.tagName==="LINK"&&i.rel==="modulepreload"&&s(i)}).observe(document,{childList:!0,subtree:!0});function l(o){const a={};return o.integrity&&(a.integrity=o.integrity),o.referrerPolicy&&(a.referrerPolicy=o.referrerPolicy),o.crossOrigin==="use-credentials"?a.credentials="include":o.crossOrigin==="anonymous"?a.credentials="omit":a.credentials="same-origin",a}function s(o){if(o.ep)return;o.ep=!0;const a=l(o);fetch(o.href,a)}})();const m=t=>{t==="/login"?p():t==="/profile"&&f(),g()},p=()=>{if(localStorage.getItem("user")!==null)window.history.pushState({},"","/"),n();else{const t=document.getElementById("login-form");t&&t.addEventListener("submit",h)}},f=()=>{if(localStorage.getItem("user")===null)window.history.pushState({},"","/login"),n();else{const t=document.getElementById("profile-form");t&&t.addEventListener("submit",b)}},g=()=>{const t=document.getElementById("logout");t&&t.addEventListener("click",v)},b=t=>{t.preventDefault();const e=document.getElementById("username").value,l=document.getElementById("email").value,s=document.getElementById("bio").value.trim(),o={username:e,email:l,bio:s};localStorage.setItem("user",JSON.stringify(o)),window.history.pushState({},"","/profile"),n()},h=t=>{t.preventDefault();const e={username:"testuser",email:"",bio:""};localStorage.setItem("user",JSON.stringify(e)),window.history.pushState({},"","/"),n()},v=t=>{t.preventDefault(),localStorage.removeItem("user"),window.history.pushState({},"","/login"),n()},x=()=>`
+(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const l of document.querySelectorAll('link[rel="modulepreload"]'))s(l);new MutationObserver(l=>{for(const a of l)if(a.type==="childList")for(const i of a.addedNodes)i.tagName==="LINK"&&i.rel==="modulepreload"&&s(i)}).observe(document,{childList:!0,subtree:!0});function o(l){const a={};return l.integrity&&(a.integrity=l.integrity),l.referrerPolicy&&(a.referrerPolicy=l.referrerPolicy),l.crossOrigin==="use-credentials"?a.credentials="include":l.crossOrigin==="anonymous"?a.credentials="omit":a.credentials="same-origin",a}function s(l){if(l.ep)return;l.ep=!0;const a=o(l);fetch(l.href,a)}})();const m=t=>{t==="/login"?f():t==="/profile"&&p(),g()},f=()=>{if(localStorage.getItem("user")!==null)window.history.pushState({},"","/"),n();else{const t=document.getElementById("login-form");t&&t.addEventListener("submit",h)}},p=()=>{if(localStorage.getItem("user")===null)window.history.pushState({},"","/login"),n();else{const t=document.getElementById("profile-form");t&&t.addEventListener("submit",b)}},g=()=>{const t=document.getElementById("logout");t&&t.addEventListener("click",v)},b=t=>{t.preventDefault();const e=document.getElementById("username").value,o=document.getElementById("email").value,s=document.getElementById("bio").value.trim(),l={username:e,email:o,bio:s};localStorage.setItem("user",JSON.stringify(l)),window.history.pushState({},"","/profile"),n()},h=t=>{t.preventDefault();const e={username:"testuser",email:"",bio:""};localStorage.setItem("user",JSON.stringify(e)),window.history.pushState({},"","/"),n()},v=t=>{t.preventDefault(),localStorage.removeItem("user"),window.history.pushState({},"","/login"),n()},x=()=>`
   <header class="bg-blue-600 text-white p-4 sticky top-0">
     <h1 class="text-2xl font-bold">항해플러스</h1>
   </header>
@@ -15,16 +15,16 @@
           <li><a href="#" id="logout" class="text-gray-600">로그아웃</a></li>`:'<li><a href="/login" class="text-gray-600">로그인</a></li>'}
     </ul>
   </nav>
-`,$=t=>{const{profileImage:e,author:l,timeAgo:s,content:o,id:a}=t;return`
+`,$=t=>{const{profileImage:e,author:o,timeAgo:s,content:l,id:a}=t;return`
     <div class="bg-white rounded-lg shadow p-4" data-post-id="${a||""}">
         <div class="flex items-center mb-2">
           <img src="${e}" alt="프로필" class="rounded-full mr-2">
           <div>
-            <p class="font-bold">${l}</p>
+            <p class="font-bold">${o}</p>
             <p class="text-sm text-gray-500">${s}</p>
           </div>
         </div>
-        <p>${o}</p>
+        <p>${l}</p>
         <div class="mt-2 flex justify-between text-gray-500">
           <button class="post-action" data-action="like" data-post-id="${a||""}">좋아요</button>
           <button class="post-action" data-action="comment" data-post-id="${a||""}">댓글</button>
@@ -44,15 +44,15 @@
       </div>
     </div>
   </div>
-`,d=({label:t,id:e,value:l,type:s="text"})=>`
+`,d=({label:t,id:e,value:o,type:s="text"})=>`
   <div class="mb-4">
     <label for="${e}" class="block text-gray-700 text-sm font-bold mb-2">${t}</label>
-    <input type="${s}" id="${e}" name="${e}" value="${l}" class="w-full p-2 border rounded" />
+    <input type="${s}" id="${e}" name="${e}" value="${o}" class="w-full p-2 border rounded" />
   </div>
-`,I=({label:t,id:e,value:l})=>`
+`,I=({label:t,id:e,value:o})=>`
   <div class="mb-4">
     <label for="${e}" class="block text-gray-700 text-sm font-bold mb-2">${t}</label>
-    <textarea id="${e}" name="${e}" class="w-full p-2 border rounded">${l}</textarea>
+    <textarea id="${e}" name="${e}" class="w-full p-2 border rounded">${o}</textarea>
   </div>
 `,L=[{id:1,author:"홍길동",profileImage:"https://placehold.co/40",timeAgo:"5분 전",content:"오늘 날씨가 정말 좋네요. 다들 좋은 하루 보내세요!"},{id:2,author:"김철수",profileImage:"https://placehold.co/40",timeAgo:"15분 전",content:"새로운 프로젝트를 시작했어요. 열심히 코딩 중입니다!"},{id:3,author:"이영희",profileImage:"https://placehold.co/40",timeAgo:"30분 전",content:"오늘 점심 메뉴 추천 받습니다. 뭐가 좋을까요?"},{id:4,author:"박민수",profileImage:"https://placehold.co/40",timeAgo:"1시간 전",content:"주말에 등산 가실 분 계신가요? 함께 가요!"},{id:5,author:"정수연",profileImage:"https://placehold.co/40",timeAgo:"2시간 전",content:"새로 나온 영화 재미있대요. 같이 보러 갈 사람?"}],u=()=>localStorage.getItem("user")!==null,S=()=>JSON.parse(localStorage.getItem("user")||"null"),P=()=>{const t=`
     <div class="mb-4 bg-white rounded-lg shadow p-4">
@@ -116,4 +116,4 @@
       </a>
     </div>
   </main>
-`,r="/front_5th_chapter1-1";console.log("여긴 main.js");const n=()=>{const e=window.location.pathname.replace(r,"")||"/";let l="";e==="/"?l=P():e==="/profile"?l=E({user:S()}):e==="/login"?l=A():l=B(),document.getElementById("root").innerHTML=l,N(),m(e)},N=()=>{const t=document.querySelector("#nav");t&&t.addEventListener("click",e=>{if(e.target.tagName==="A"){e.preventDefault();const l=e.target.getAttribute("href");console.log("a"`, ${r}${l}`),window.history.pushState({},"",`${r}${l}`)}})};window.addEventListener("load",n);window.addEventListener("popstate",n);
+`,r="/front_5th_chapter1-1";console.log("여긴 main.js");const n=()=>{const e=window.location.pathname.replace(r,"")||"/";let o="";e==="/"?o=P():e==="/profile"?o=E({user:S()}):e==="/login"?o=A():o=B(),document.getElementById("root").innerHTML=o,N(),m(e)},N=()=>{const t=document.querySelector("#nav");t&&t.addEventListener("click",e=>{if(e.target.tagName==="A"){e.preventDefault();const o=e.target.getAttribute("href");console.log("href",o),console.log("a",`${r}${o}`),window.history.pushState({},"",`${r}${o}`)}})};window.addEventListener("load",n);window.addEventListener("popstate",n);
