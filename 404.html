@@ -4,10 +4,10 @@
     <meta charset="utf-8" />
     <title>Redirecting...</title>
     <script type="text/javascript">
-      var path = window.location.pathname;
-      var query = window.location.search;
-      var hash = window.location.hash;
-      window.location.replace("/index.html?p=" + path + query + hash);
+      const path = window.location.pathname;
+      const query = window.location.search;
+      const hash = window.location.hash;
+      window.location.replace("/index.html" + path + query + hash);
     </script>
   </head>
   <body></body>
