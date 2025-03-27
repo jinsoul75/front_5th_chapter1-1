@@ -1,4 +1,4 @@
-(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const o of document.querySelectorAll('link[rel="modulepreload"]'))s(o);new MutationObserver(o=>{for(const l of o)if(l.type==="childList")for(const d of l.addedNodes)d.tagName==="LINK"&&d.rel==="modulepreload"&&s(d)}).observe(document,{childList:!0,subtree:!0});function a(o){const l={};return o.integrity&&(l.integrity=o.integrity),o.referrerPolicy&&(l.referrerPolicy=o.referrerPolicy),o.crossOrigin==="use-credentials"?l.credentials="include":o.crossOrigin==="anonymous"?l.credentials="omit":l.credentials="same-origin",l}function s(o){if(o.ep)return;o.ep=!0;const l=a(o);fetch(o.href,l)}})();const p=()=>`
+(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const o of document.querySelectorAll('link[rel="modulepreload"]'))n(o);new MutationObserver(o=>{for(const l of o)if(l.type==="childList")for(const c of l.addedNodes)c.tagName==="LINK"&&c.rel==="modulepreload"&&n(c)}).observe(document,{childList:!0,subtree:!0});function a(o){const l={};return o.integrity&&(l.integrity=o.integrity),o.referrerPolicy&&(l.referrerPolicy=o.referrerPolicy),o.crossOrigin==="use-credentials"?l.credentials="include":o.crossOrigin==="anonymous"?l.credentials="omit":l.credentials="same-origin",l}function n(o){if(o.ep)return;o.ep=!0;const l=a(o);fetch(o.href,l)}})();const p=()=>`
   <header class="bg-blue-600 text-white p-4 sticky top-0">
     <h1 class="text-2xl font-bold">항해플러스</h1>
   </header>
@@ -15,13 +15,13 @@
           <li><a href="/login" id="logout" class="text-gray-600">로그아웃</a></li>`:'<li><a href="/login" class="text-gray-600">로그인</a></li>'}
     </ul>
   </nav>
-`,x=t=>{const{profileImage:e,author:a,timeAgo:s,content:o,id:l}=t;return`
+`,x=t=>{const{profileImage:e,author:a,timeAgo:n,content:o,id:l}=t;return`
     <div class="bg-white rounded-lg shadow p-4" data-post-id="${l||""}">
         <div class="flex items-center mb-2">
           <img src="${e}" alt="프로필" class="rounded-full mr-2">
           <div>
             <p class="font-bold">${a}</p>
-            <p class="text-sm text-gray-500">${s}</p>
+            <p class="text-sm text-gray-500">${n}</p>
           </div>
         </div>
         <p>${o}</p>
@@ -42,10 +42,10 @@
         ${b()}
       </div>
     </div>
-`,c=({label:t,id:e,value:a,type:s="text"})=>`
+`,d=({label:t,id:e,value:a,type:n="text"})=>`
   <div class="mb-4">
     <label for="${e}" class="block text-gray-700 text-sm font-bold mb-2">${t}</label>
-    <input type="${s}" id="${e}" name="${e}" value="${a}" class="w-full p-2 border rounded" />
+    <input type="${n}" id="${e}" name="${e}" value="${a}" class="w-full p-2 border rounded" />
   </div>
 `,v=({label:t,id:e,value:a})=>`
   <div class="mb-4">
@@ -67,8 +67,8 @@
         내 프로필
       </h2>
       <form id="profile-form">
-        ${c({label:"사용자 이름",id:"username",value:t==null?void 0:t.username})}
-        ${c({label:"이메일",id:"email",value:t==null?void 0:t.email,type:"email"})}
+        ${d({label:"사용자 이름",id:"username",value:t==null?void 0:t.username})}
+        ${d({label:"이메일",id:"email",value:t==null?void 0:t.email,type:"email"})}
         ${v({label:"자기소개",id:"bio",value:`${t==null?void 0:t.bio} ${t==null?void 0:t.bio}`})}
         <button
           type="submit"
@@ -114,4 +114,4 @@
       </a>
     </div>
   </main>
-`,f="/front_5th_chapter1-1",r=window.location.hash!=="",n=t=>{let e="";t==="/"?e=$():t==="/profile"?e=I({user:w()}):t==="/login"?e=L():e=P(),document.getElementById("root").innerHTML=e,t==="/login"?S():t==="/profile"&&A(),B()},i=(t,e)=>{t?window.location.href=`/index.hash.html#${e}`:window.history.pushState({},"",e)},E=t=>{n(t);const e=window.location.hash!=="",a=document.querySelector("#nav");a&&a.addEventListener("click",s=>{if(s.target.tagName==="A"){s.preventDefault();const o=s.target.getAttribute("href");i(e,`${f}${o}`),n(o)}})},S=()=>{if(localStorage.getItem("user")!==null)i(r,"/"),n("/");else{const t=document.getElementById("login-form");t&&t.addEventListener("submit",N)}},A=()=>{if(localStorage.getItem("user")===null)i(r,"/login"),n("/login");else{const t=document.getElementById("profile-form");t&&t.addEventListener("submit",O)}},B=()=>{const t=document.getElementById("logout");t&&t.addEventListener("click",j)},O=t=>{t.preventDefault();const e=document.getElementById("username").value,a=document.getElementById("email").value,s=document.getElementById("bio").value.trim(),o={username:e,email:a,bio:s};localStorage.setItem("user",JSON.stringify(o)),i(r,"/profile"),n("/profile")},N=t=>{t.preventDefault();const e={username:"testuser",email:"",bio:""};localStorage.setItem("user",JSON.stringify(e)),i(r,"/"),n("/")},j=()=>{localStorage.removeItem("user")},g=()=>{const e=window.location.pathname.replace(f,"")||"/";E(e)};window.addEventListener("load",g);window.addEventListener("popstate",g);
+`,f="/front_5th_chapter1-1",r=window.location.hash!=="",s=t=>{let e="";t==="/"?e=$():t==="/profile"?e=I({user:w()}):t==="/login"?e=L():e=P(),document.getElementById("root").innerHTML=e,t==="/login"?S():t==="/profile"&&A(),B()},i=(t,e)=>{console.log("path in navigateTo",e),t?window.location.hash=e:window.history.pushState({},"",e)},E=t=>{s(t);const e=window.location.hash!=="",a=document.querySelector("#nav");a&&a.addEventListener("click",n=>{if(n.target.tagName==="A"){n.preventDefault();const o=n.target.getAttribute("href");i(e,`${f}${o}`),s(o)}})},S=()=>{if(localStorage.getItem("user")!==null)i(r,"/"),s("/");else{const t=document.getElementById("login-form");t&&t.addEventListener("submit",N)}},A=()=>{if(localStorage.getItem("user")===null)i(r,"/login"),s("/login");else{const t=document.getElementById("profile-form");t&&t.addEventListener("submit",O)}},B=()=>{const t=document.getElementById("logout");t&&t.addEventListener("click",j)},O=t=>{t.preventDefault();const e=document.getElementById("username").value,a=document.getElementById("email").value,n=document.getElementById("bio").value.trim(),o={username:e,email:a,bio:n};localStorage.setItem("user",JSON.stringify(o)),i(r,"/profile"),s("/profile")},N=t=>{t.preventDefault();const e={username:"testuser",email:"",bio:""};localStorage.setItem("user",JSON.stringify(e)),i(r,"/"),s("/")},j=()=>{localStorage.removeItem("user")},g=()=>{const e=window.location.pathname.replace(f,"")||"/";E(e)};window.addEventListener("load",g);window.addEventListener("popstate",g);
