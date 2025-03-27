@@ -1,6 +1,6 @@
-import { Layout, Card } from "../components";
-import { posts } from "../data/posts";
-import { isLoggedIn } from "../utils/auth";
+import { Layout, Card } from "@/components";
+import { posts } from "@/data/posts";
+import { authManager, USER } from "@/utils/auth";
 
 export const MainPage = () => {
   const content = `
@@ -16,7 +16,7 @@ export const MainPage = () => {
 
   return Layout({
     content,
-    isLoggedIn: isLoggedIn(),
+    isLoggedIn: authManager.isLoggedIn(USER),
   });
 };
 

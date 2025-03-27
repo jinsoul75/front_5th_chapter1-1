@@ -1,5 +1,5 @@
-import { render } from "./pageHandlers";
-import { BASE_PATH } from "./utils/path";
+import { render } from "@/pageHandlers";
+import { BASE_PATH } from "@/config/config";
 
 document.addEventListener("click", (e) => {
   if (e.target.tagName === "A" && e.target.id !== "logout") {

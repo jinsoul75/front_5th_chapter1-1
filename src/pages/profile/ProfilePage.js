@@ -1,5 +1,5 @@
-import { Layout, FormInput, FormTextarea } from "../components";
-import { isLoggedIn } from "../utils/auth";
+import { Layout, FormInput, FormTextarea } from "@/components";
+import { authManager, USER } from "@/utils/auth";
 
 const ProfilePage = ({ user }) => {
   const content = `
@@ -36,7 +36,7 @@ const ProfilePage = ({ user }) => {
 
   return Layout({
     content,
-    isLoggedIn: isLoggedIn(),
+    isLoggedIn: authManager.isLoggedIn(USER),
   });
 };
 

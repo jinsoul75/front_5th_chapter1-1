@@ -1,8 +1,14 @@
-import { ErrorPage, LoginPage, MainPage, ProfilePage } from "./pages";
-import { getUserData } from "./utils/auth";
-import { BASE_PATH } from "./utils/path";
+import { ErrorPage, LoginPage, MainPage, ProfilePage } from "@/pages";
+import { BASE_PATH } from "@/config/config";
+import { authManager, USER, USER_DATA } from "@/utils/auth";
 
 const isHash = window.location.hash !== "";
+
+const PATHS = {
+  MAIN: "/",
+  PROFILE: "/profile",
+  LOGIN: "/login",
+};
 
 export const render = () => {
   const isHash = window.location.hash !== "";
@@ -11,23 +17,30 @@ export const render = () => {
     ? window.location.hash.slice(1).replace(BASE_PATH, "")
     : window.location.pathname.replace(BASE_PATH, "");
 
+  handlePageRendering(path);
+  registerEventListeners(path);
+};
+
+const handlePageRendering = (path) => {
   let page = "";
 
-  if (path === "/") {
+  if (path === PATHS.MAIN) {
     page = MainPage();
-  } else if (path === "/profile") {
-    page = ProfilePage({ user: getUserData() });
-  } else if (path === "/login") {
+  } else if (path === PATHS.PROFILE) {
+    page = ProfilePage({ user: authManager.getUserData(USER) });
+  } else if (path === PATHS.LOGIN) {
     page = LoginPage();
   } else {
     page = ErrorPage();
   }
 
   document.getElementById("root").innerHTML = page;
+};
 
-  if (path === "/login") {
+const registerEventListeners = (path) => {
+  if (path === PATHS.LOGIN) {
     handleLoginPage();
-  } else if (path === "/profile") {
+  } else if (path === PATHS.PROFILE) {
     handleProfilePage();
   }
   handleLogout();
@@ -42,9 +55,9 @@ const navigateTo = (isHash, path) => {
 };
 
 const handleLoginPage = () => {
-  if (localStorage.getItem("user") !== null) {
-    navigateTo(isHash, "/");
-    render("/");
+  if (authManager.isLoggedIn(USER)) {
+    navigateTo(isHash, PATHS.MAIN);
+    render(PATHS.MAIN);
   } else {
     const form = document.getElementById("login-form");
     if (form) {
@@ -54,9 +67,9 @@ const handleLoginPage = () => {
 };
 
 const handleProfilePage = () => {
-  if (localStorage.getItem("user") === null) {
-    navigateTo(isHash, "/login");
-    render("/login");
+  if (!authManager.isLoggedIn(USER)) {
+    navigateTo(isHash, PATHS.LOGIN);
+    render(PATHS.LOGIN);
   } else {
     const form = document.getElementById("profile-form");
 
@@ -82,23 +95,22 @@ const handleProfileSubmit = (e) => {
 
   const userData = { username, email, bio };
 
-  localStorage.setItem("user", JSON.stringify(userData));
+  authManager.setUserData(USER, userData);
 
-  navigateTo(isHash, "/profile");
-  render("/profile");
+  navigateTo(isHash, PATHS.PROFILE);
+  render(PATHS.PROFILE);
 };
 
 const handleLoginSubmit = (e) => {
   e.preventDefault();
-  const userData = { username: "testuser", email: "", bio: "" };
-  localStorage.setItem("user", JSON.stringify(userData));
-  navigateTo(isHash, "/");
-  render("/");
+  authManager.setUserData(USER, USER_DATA);
+  navigateTo(isHash, PATHS.MAIN);
+  render(PATHS.MAIN);
 };
 
 const handleLogoutClick = (e) => {
   e.preventDefault();
-  localStorage.removeItem("user");
-  navigateTo(isHash, "/login");
-  render("/login");
+  authManager.logout(USER);
+  navigateTo(isHash, PATHS.LOGIN);
+  render(PATHS.LOGIN);
 };
