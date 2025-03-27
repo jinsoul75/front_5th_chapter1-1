@@ -1,0 +1,1 @@
+import{B as a,r as e}from"./pageHandlers-GZjgEC4e.js";document.addEventListener("click",t=>{if(t.target.tagName==="A"&&t.target.id!=="logout"){t.preventDefault();const r=t.target.getAttribute("href");window.history.pushState({},"",`${a}${r}`),e()}});window.addEventListener("load",e);window.addEventListener("popstate",e);

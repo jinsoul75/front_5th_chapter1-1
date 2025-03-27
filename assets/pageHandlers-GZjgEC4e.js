@@ -69,7 +69,7 @@
       <form id="profile-form">
         ${f({label:"사용자 이름",id:"username",value:e==null?void 0:e.username})}
         ${f({label:"이메일",id:"email",value:e==null?void 0:e.email,type:"email"})}
-        ${y({label:"자기소개",id:"bio",value:`${e==null?void 0:e.bio} ${e==null?void 0:e.bio}`})}
+        ${y({label:"자기소개",id:"bio",value:e==null?void 0:e.bio})}
         <button
           type="submit"
           class="w-full bg-blue-600 text-white p-2 rounded font-bold"
