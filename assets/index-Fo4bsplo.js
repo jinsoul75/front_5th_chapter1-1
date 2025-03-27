@@ -31,7 +31,7 @@
           <button class="post-action" data-action="share" data-post-id="${l||""}">공유</button>
         </div>
     </div>
-  `},u=({content:t,isLoggedIn:e})=>`
+  `},m=({content:t,isLoggedIn:e})=>`
     <div class="bg-gray-100 min-h-screen flex justify-center">
       <div class="max-w-md w-full">
         ${p()}
@@ -42,7 +42,7 @@
         ${b()}
       </div>
     </div>
-`,d=({label:t,id:e,value:a,type:s="text"})=>`
+`,u=({label:t,id:e,value:a,type:s="text"})=>`
   <div class="mb-4">
     <label for="${e}" class="block text-gray-700 text-sm font-bold mb-2">${t}</label>
     <input type="${s}" id="${e}" name="${e}" value="${a}" class="w-full p-2 border rounded" />
@@ -52,7 +52,7 @@
     <label for="${e}" class="block text-gray-700 text-sm font-bold mb-2">${t}</label>
     <textarea id="${e}" name="${e}" class="w-full p-2 border rounded">${a}</textarea>
   </div>
-`,y=[{id:1,author:"홍길동",profileImage:"https://placehold.co/40",timeAgo:"5분 전",content:"오늘 날씨가 정말 좋네요. 다들 좋은 하루 보내세요!"},{id:2,author:"김철수",profileImage:"https://placehold.co/40",timeAgo:"15분 전",content:"새로운 프로젝트를 시작했어요. 열심히 코딩 중입니다!"},{id:3,author:"이영희",profileImage:"https://placehold.co/40",timeAgo:"30분 전",content:"오늘 점심 메뉴 추천 받습니다. 뭐가 좋을까요?"},{id:4,author:"박민수",profileImage:"https://placehold.co/40",timeAgo:"1시간 전",content:"주말에 등산 가실 분 계신가요? 함께 가요!"},{id:5,author:"정수연",profileImage:"https://placehold.co/40",timeAgo:"2시간 전",content:"새로 나온 영화 재미있대요. 같이 보러 갈 사람?"}],m=()=>localStorage.getItem("user")!==null,w=()=>JSON.parse(localStorage.getItem("user")||"null"),$=()=>{const t=`
+`,y=[{id:1,author:"홍길동",profileImage:"https://placehold.co/40",timeAgo:"5분 전",content:"오늘 날씨가 정말 좋네요. 다들 좋은 하루 보내세요!"},{id:2,author:"김철수",profileImage:"https://placehold.co/40",timeAgo:"15분 전",content:"새로운 프로젝트를 시작했어요. 열심히 코딩 중입니다!"},{id:3,author:"이영희",profileImage:"https://placehold.co/40",timeAgo:"30분 전",content:"오늘 점심 메뉴 추천 받습니다. 뭐가 좋을까요?"},{id:4,author:"박민수",profileImage:"https://placehold.co/40",timeAgo:"1시간 전",content:"주말에 등산 가실 분 계신가요? 함께 가요!"},{id:5,author:"정수연",profileImage:"https://placehold.co/40",timeAgo:"2시간 전",content:"새로 나온 영화 재미있대요. 같이 보러 갈 사람?"}],f=()=>localStorage.getItem("user")!==null,w=()=>JSON.parse(localStorage.getItem("user")||"null"),$=()=>{const t=`
     <div class="mb-4 bg-white rounded-lg shadow p-4">
       <textarea class="w-full p-2 border rounded" placeholder="무슨 생각을 하고 계신가요?"></textarea>
       <button class="mt-2 bg-blue-600 text-white px-4 py-2 rounded">게시</button>
@@ -61,14 +61,14 @@
     <div class="space-y-4">
       ${y.map(e=>x(e)).join("")}
     </div>
-  `;return u({content:t,isLoggedIn:m()})},I=({user:t})=>{const e=`
+  `;return m({content:t,isLoggedIn:f()})},I=({user:t})=>{const e=`
     <div class="bg-white p-8 rounded-lg shadow-md">
       <h2 class="text-2xl font-bold text-center text-blue-600 mb-8">
         내 프로필
       </h2>
       <form id="profile-form">
-        ${d({label:"사용자 이름",id:"username",value:t==null?void 0:t.username})}
-        ${d({label:"이메일",id:"email",value:t==null?void 0:t.email,type:"email"})}
+        ${u({label:"사용자 이름",id:"username",value:t==null?void 0:t.username})}
+        ${u({label:"이메일",id:"email",value:t==null?void 0:t.email,type:"email"})}
         ${v({label:"자기소개",id:"bio",value:`${t==null?void 0:t.bio} ${t==null?void 0:t.bio}`})}
         <button
           type="submit"
@@ -78,7 +78,7 @@
         </button>
       </form>
     </div>
-  `;return u({content:e,isLoggedIn:m()})},L=()=>`
+  `;return m({content:e,isLoggedIn:f()})},L=()=>`
   <main class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
       <h1 class="text-2xl font-bold text-center text-blue-600 mb-8">항해플러스</h1>
@@ -114,4 +114,4 @@
       </a>
     </div>
   </main>
-`,f="/front_5th_chapter1-1",r=window.location.hash!=="",n=t=>{let e="";t==="/"?e=$():t==="/profile"?e=I({user:w()}):t==="/login"?e=L():e=P(),document.getElementById("root").innerHTML=e,t==="/login"?S():t==="/profile"&&A(),B()},i=(t,e)=>{t?window.location.hash=e:window.history.pushState({},"",`${f}${e}`)},E=t=>{n(t);const e=window.location.hash!=="",a=document.querySelector("#nav");a&&a.addEventListener("click",s=>{if(s.target.tagName==="A"){s.preventDefault();const o=s.target.getAttribute("href");i(e,o),n(o)}})},S=()=>{if(localStorage.getItem("user")!==null)i(r,"/"),n("/");else{const t=document.getElementById("login-form");t&&t.addEventListener("submit",N)}},A=()=>{if(localStorage.getItem("user")===null)i(r,"/login"),n("/login");else{const t=document.getElementById("profile-form");t&&t.addEventListener("submit",O)}},B=()=>{const t=document.getElementById("logout");t&&t.addEventListener("click",j)},O=t=>{t.preventDefault();const e=document.getElementById("username").value,a=document.getElementById("email").value,s=document.getElementById("bio").value.trim(),o={username:e,email:a,bio:s};localStorage.setItem("user",JSON.stringify(o)),i(r,"/profile"),n("/profile")},N=t=>{t.preventDefault();const e={username:"testuser",email:"",bio:""};localStorage.setItem("user",JSON.stringify(e)),i(r,"/"),n("/")},j=()=>{localStorage.removeItem("user")},g=()=>{const e=window.location.pathname.replace(f,"")||"/";E(e)};window.addEventListener("load",g);window.addEventListener("popstate",g);
+`,d="/front_5th_chapter1-1",r=window.location.hash!=="",n=t=>{let e="";t==="/"?e=$():t==="/profile"?e=I({user:w()}):t==="/login"?e=L():e=P(),document.getElementById("root").innerHTML=e,t==="/login"?S():t==="/profile"&&A(),B()},i=(t,e)=>{t?window.location.hash=e:(console.log("${BASE_PATH}${path}",`${d}${e}`),window.history.pushState({},"",`${d}${e}`))},E=t=>{n(t);const e=window.location.hash!=="",a=document.querySelector("#nav");a&&a.addEventListener("click",s=>{if(s.target.tagName==="A"){s.preventDefault();const o=s.target.getAttribute("href");i(e,o),n(o)}})},S=()=>{if(localStorage.getItem("user")!==null)i(r,"/"),n("/");else{const t=document.getElementById("login-form");t&&t.addEventListener("submit",N)}},A=()=>{if(localStorage.getItem("user")===null)i(r,"/login"),n("/login");else{const t=document.getElementById("profile-form");t&&t.addEventListener("submit",O)}},B=()=>{const t=document.getElementById("logout");t&&t.addEventListener("click",H)},O=t=>{t.preventDefault();const e=document.getElementById("username").value,a=document.getElementById("email").value,s=document.getElementById("bio").value.trim(),o={username:e,email:a,bio:s};localStorage.setItem("user",JSON.stringify(o)),i(r,"/profile"),n("/profile")},N=t=>{t.preventDefault();const e={username:"testuser",email:"",bio:""};localStorage.setItem("user",JSON.stringify(e)),i(r,"/"),n("/")},H=()=>{localStorage.removeItem("user")},g=()=>{const e=window.location.pathname.replace(d,"")||"/";E(e)};window.addEventListener("load",g);window.addEventListener("popstate",g);
