@@ -1,7 +1,6 @@
 import { Header, Footer, Nav } from "./index";
 
 export const Layout = ({ content, isLoggedIn }) => `
-  <div id="root">
     <div class="bg-gray-100 min-h-screen flex justify-center">
       <div class="max-w-md w-full">
         ${Header()}
@@ -12,7 +11,6 @@ export const Layout = ({ content, isLoggedIn }) => `
         ${Footer()}
       </div>
     </div>
-  </div>
 `;
 
 export default Layout;

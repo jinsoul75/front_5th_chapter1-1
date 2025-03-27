@@ -1,34 +1,22 @@
-import { initPageHandlers } from "./pageHandlers";
-import { MainPage, ProfilePage, LoginPage, ErrorPage } from "./pages";
-import { getUserData } from "./utils/auth";
+import { render } from "./pageHandlers";
+
+document.addEventListener("click", (e) => {
+  if (e.target.tagName === "A" && e.target.id !== "logout") {
+    console.log("A 태그 클릭 in hash");
+    e.preventDefault();
+    const hash = e.target.getAttribute("href");
+    window.location.hash = hash;
+    render();
+  }
+});
 
 const initializeApp = () => {
   if (!window.location.hash) {
-    window.location.replace(`${window.location.pathname}#/`);
+    window.location.replace(`${window.location.hash}#/`);
     return;
   }
-  hashRouter();
-};
-
-export const hashRouter = () => {
-  const hashPath = window.location.hash.slice(1) || "/";
-
-  let page = "";
-
-  if (hashPath === "/") {
-    page = MainPage();
-  } else if (hashPath === "/profile") {
-    page = ProfilePage({ user: getUserData() });
-  } else if (hashPath === "/login") {
-    page = LoginPage();
-  } else {
-    page = ErrorPage();
-  }
-
-  document.getElementById("root").innerHTML = page;
-
-  initPageHandlers(hashPath);
+  render();
 };
 
 window.addEventListener("load", initializeApp);
-window.addEventListener("hashchange", hashRouter);
+window.addEventListener("hashchange", render);
