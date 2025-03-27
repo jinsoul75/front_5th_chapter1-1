@@ -2,11 +2,11 @@
   <header class="bg-blue-600 text-white p-4 sticky top-0">
     <h1 class="text-2xl font-bold">항해플러스</h1>
   </header>
-`,h=()=>`
+`,b=()=>`
   <footer class="bg-gray-200 p-4 text-center">
     <p>&copy; 2024 항해플러스. All rights reserved.</p>
   </footer>
-`,b=({isLoggedIn:t})=>`
+`,h=({isLoggedIn:t})=>`
   <nav id="nav" class="bg-white shadow-md p-2 sticky top-14">
     <ul class="flex justify-around">
       <li><a href="/" class="text-blue-600 font-bold">홈</a></li>
@@ -35,11 +35,11 @@
     <div class="bg-gray-100 min-h-screen flex justify-center">
       <div class="max-w-md w-full">
         ${p()}
-        ${b({isLoggedIn:e})}
+        ${h({isLoggedIn:e})}
         <main class="p-4">
           ${t}
         </main>
-        ${h()}
+        ${b()}
       </div>
     </div>
 `,d=({label:t,id:e,value:a,type:n="text"})=>`
@@ -114,4 +114,4 @@
       </a>
     </div>
   </main>
-`,f="/front_5th_chapter1-1",r=window.location.hash!=="",s=t=>{let e="";t==="/"?e=$():t==="/profile"?e=I({user:y()}):t==="/login"?e=L():e=P(),document.getElementById("root").innerHTML=e,t==="/login"?S():t==="/profile"&&A(),B()},i=(t,e)=>{t?(window.location.pathname=`${f}/index.hash.html`,window.location.hash=`${e}`):window.history.pushState({},"",e)},E=t=>{s(t);const e=window.location.hash!=="",a=document.querySelector("#nav");a&&a.addEventListener("click",n=>{if(n.target.tagName==="A"){n.preventDefault();const o=n.target.getAttribute("href");i(e,`${f}${o}`),s(o)}})},S=()=>{if(localStorage.getItem("user")!==null)i(r,"/"),s("/");else{const t=document.getElementById("login-form");t&&t.addEventListener("submit",N)}},A=()=>{if(localStorage.getItem("user")===null)i(r,"/login"),s("/login");else{const t=document.getElementById("profile-form");t&&t.addEventListener("submit",O)}},B=()=>{const t=document.getElementById("logout");t&&t.addEventListener("click",j)},O=t=>{t.preventDefault();const e=document.getElementById("username").value,a=document.getElementById("email").value,n=document.getElementById("bio").value.trim(),o={username:e,email:a,bio:n};localStorage.setItem("user",JSON.stringify(o)),i(r,"/profile"),s("/profile")},N=t=>{t.preventDefault();const e={username:"testuser",email:"",bio:""};localStorage.setItem("user",JSON.stringify(e)),i(r,"/"),s("/")},j=()=>{localStorage.removeItem("user")},D=()=>{if(!window.location.hash){window.location.replace(`${window.location.pathname}#/`);return}g()},g=()=>{const t=window.location.hash.slice(1)||"/";E(t)};window.addEventListener("load",D);window.addEventListener("hashchange",g);
+`,f="/front_5th_chapter1-1",r=window.location.hash!=="",s=t=>{let e="";t==="/"?e=$():t==="/profile"?e=I({user:y()}):t==="/login"?e=L():e=P(),document.getElementById("root").innerHTML=e,t==="/login"?S():t==="/profile"&&A(),B()},i=(t,e)=>{t?(window.location.pathname=`${f}`,window.location.hash=`${e}`):window.history.pushState({},"",e)},E=t=>{s(t);const e=window.location.hash!=="",a=document.querySelector("#nav");a&&a.addEventListener("click",n=>{if(n.target.tagName==="A"){n.preventDefault();const o=n.target.getAttribute("href");i(e,`${f}${o}`),s(o)}})},S=()=>{if(localStorage.getItem("user")!==null)i(r,"/"),s("/");else{const t=document.getElementById("login-form");t&&t.addEventListener("submit",N)}},A=()=>{if(localStorage.getItem("user")===null)i(r,"/login"),s("/login");else{const t=document.getElementById("profile-form");t&&t.addEventListener("submit",O)}},B=()=>{const t=document.getElementById("logout");t&&t.addEventListener("click",j)},O=t=>{t.preventDefault();const e=document.getElementById("username").value,a=document.getElementById("email").value,n=document.getElementById("bio").value.trim(),o={username:e,email:a,bio:n};localStorage.setItem("user",JSON.stringify(o)),i(r,"/profile"),s("/profile")},N=t=>{t.preventDefault();const e={username:"testuser",email:"",bio:""};localStorage.setItem("user",JSON.stringify(e)),i(r,"/"),s("/")},j=()=>{localStorage.removeItem("user")},D=()=>{if(!window.location.hash){window.location.replace(`${window.location.pathname}#/`);return}g()},g=()=>{const t=window.location.hash.slice(1)||"/";E(t)};window.addEventListener("load",D);window.addEventListener("hashchange",g);
