@@ -22,7 +22,7 @@ const ProfilePage = ({ user }) => {
         ${FormTextarea({
           label: "자기소개",
           id: "bio",
-          value: `${user?.bio} ${user?.bio}`,
+          value: user?.bio,
         })}
         <button
           type="submit"
